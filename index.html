@@ -1,1 +1,112 @@
-<!-- index.html placeholder -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4CAF50">
+  <title>فرم بازدید گلخانه قهرمان</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <style>
+    body { font-family: Tahoma; margin: 0 auto; max-width: 600px; padding: 20px; background: #f7f7f7; }
+    h1 { text-align: center; color: #2c3e50; }
+    input, textarea { width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
+    button { width: 100%; padding: 10px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+    .save-btn { background: #4CAF50; color: white; }
+    .save-btn:hover { background: #388E3C; }
+    .clear-btn { background: #f44336; color: white; }
+    .clear-btn:hover { background: #d32f2f; }
+    .print-btn { background: #607d8b; color: white; }
+    .print-btn:hover { background: #455a64; }
+    .share-btn { background: #2196f3; color: white; }
+    .share-btn:hover { background: #1976d2; }
+    .entry-box { background: white; border: 1px solid #ccc; border-radius: 6px; padding: 10px; margin-top: 10px; font-size: 14px; line-height: 1.6; }
+    label { font-weight: bold; display: block; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>فرم بازدید گلخانه</h1>
+  <label>تاریخ بازدید</label>
+  <input type="date" id="visit-date">
+
+  <label>نام سالن یا گلخانه</label>
+  <input type="text" placeholder="مثلاً سالن ۵" id="greenhouse-name">
+
+  <label>محلول‌پاشی‌ها</label>
+  <input type="text" placeholder="محلول‌پاشی ۱" id="spray1">
+  <input type="text" placeholder="محلول‌پاشی ۲" id="spray2">
+  <input type="text" placeholder="محلول‌پاشی ۳" id="spray3">
+  <input type="text" placeholder="محلول‌پاشی ۴" id="spray4">
+  <input type="text" placeholder="محلول‌پاشی ۵" id="spray5">
+
+  <label>آبیاری‌ها</label>
+  <input type="text" placeholder="آبیاری ۱" id="water1">
+  <input type="text" placeholder="آبیاری ۲" id="water2">
+  <input type="text" placeholder="آبیاری ۳" id="water3">
+  <input type="text" placeholder="آبیاری ۴" id="water4">
+  <input type="text" placeholder="آبیاری ۵" id="water5">
+
+  <label>توضیح‌ها</label>
+  <textarea rows="5" placeholder="وضعیت بوته‌ها، آفات، یا یادداشت خاص..." id="notes"></textarea>
+
+  <button class="save-btn" onclick="saveEntry()">ذخیره</button>
+  <button class="clear-btn" onclick="clearAll()">پاک کردن همه اطلاعات</button>
+  <button class="print-btn" onclick="window.print()">چاپ</button>
+  <button class="share-btn" onclick="shareData()">ارسال اطلاعات</button>
+
+  <div id="history"></div>
+
+  <script>
+    function getFormData() {
+      return {
+        date: document.getElementById('visit-date').value,
+        name: document.getElementById('greenhouse-name').value,
+        sprays: [1,2,3,4,5].map(i => document.getElementById('spray'+i).value),
+        waters: [1,2,3,4,5].map(i => document.getElementById('water'+i).value),
+        notes: document.getElementById('notes').value
+      };
+    }
+
+    function saveEntry() {
+      const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
+      const entry = getFormData();
+      entries.push(entry);
+      localStorage.setItem('greenhouseEntries', JSON.stringify(entries));
+      alert('ثبت جدید ذخیره شد ✅');
+      renderHistory();
+    }
+
+    function clearAll() {
+      localStorage.removeItem('greenhouseEntries');
+      alert('همه اطلاعات پاک شد 🗑');
+      renderHistory();
+    }
+
+    function shareData() {
+      const entry = getFormData();
+      const text = `🟢 بازدید گلخانه\nتاریخ: ${entry.date}\nنام سالن: ${entry.name}\n\n📌 محلول‌پاشی:\n${entry.sprays.map((s, i) => ` ${i+1}- ${s}`).join('\n')}\n\n💧 آبیاری:\n${entry.waters.map((w, i) => ` ${i+1}- ${w}`).join('\n')}\n\n📝 توضیحات:\n${entry.notes}`;
+      if (navigator.share) {
+        navigator.share({ text });
+      } else {
+        prompt("کپی و ارسال اطلاعات:", text);
+      }
+    }
+
+    function renderHistory() {
+      const container = document.getElementById('history');
+      const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
+      container.innerHTML = '<h2>🗂 ثبت‌های قبلی</h2>' + entries.map(entry => `
+        <div class="entry-box">
+          <strong>تاریخ:</strong> ${entry.date}<br>
+          <strong>سالن:</strong> ${entry.name}<br>
+          <strong>محلول‌پاشی:</strong><br>${entry.sprays.map((s,i)=>` ${i+1}- ${s}`).join('<br>')}<br>
+          <strong>آبیاری:</strong><br>${entry.waters.map((w,i)=>` ${i+1}- ${w}`).join('<br>')}<br>
+          <strong>توضیح:</strong> ${entry.notes}
+        </div>
+      `).join('');
+    }
+
+    renderHistory();
+  </script>
+</body>
+</html>
