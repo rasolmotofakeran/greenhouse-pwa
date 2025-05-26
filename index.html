@@ -8,7 +8,29 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.png">
   
-<script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js">
+
+    function loadFromFile() {
+      const fileInput = document.getElementById('fileLoader');
+      const file = fileInput.files[0];
+      if (!file) return alert('لطفاً یک فایل JSON انتخاب کنید');
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const importedEntries = JSON.parse(e.target.result);
+          if (!Array.isArray(importedEntries)) throw new Error();
+          const current = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
+          const merged = current.concat(importedEntries);
+          localStorage.setItem('greenhouseEntries', JSON.stringify(merged));
+          alert('اطلاعات با موفقیت بارگذاری شد ✅');
+          renderHistory();
+        } catch {
+          alert('فرمت فایل نادرست است ❌');
+        }
+      };
+      reader.readAsText(file);
+    }
+  
 <script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
   <style>
@@ -34,7 +56,35 @@
   <input type="text" id="visit-date">
 
   <label>نام سالن یا گلخانه</label>
-  <input type="text" placeholder="مثلاً سالن ۵" id="greenhouse-name">
+  <select id="greenhouse-name">
+  <option value="">انتخاب کنید</option>
+  <optgroup label="فاز 1">
+    <option value="سالن ۱ فاز ۱">سالن ۱ فاز ۱</option>
+    <option value="سالن ۲ فاز ۱">سالن ۲ فاز ۱</option>
+    <option value="سالن ۳ فاز ۱">سالن ۳ فاز ۱</option>
+    <option value="سالن ۴ فاز ۱">سالن ۴ فاز ۱</option>
+    <option value="سالن ۵ فاز ۱">سالن ۵ فاز ۱</option>
+    <option value="سالن ۶ فاز ۱">سالن ۶ فاز ۱</option>
+  </optgroup>
+  <optgroup label="فاز ۲">
+    <option value="سالن ۱ فاز ۲">سالن ۱ فاز ۲</option>
+    <option value="سالن ۲ فاز ۲">سالن ۲ فاز ۲</option>
+    <option value="سالن ۳ فاز ۲">سالن ۳ فاز ۲</option>
+    <option value="سالن ۴ فاز ۲">سالن ۴ فاز ۲</option>
+    <option value="سالن ۵ فاز ۲">سالن ۵ فاز ۲</option>
+    <option value="سالن ۶ فاز ۲">سالن ۶ فاز ۲</option>
+  </optgroup>
+  <optgroup label="فاز ۳">
+    <option value="سالن ۱ فاز ۳">سالن ۱ فاز ۳</option>
+    <option value="سالن ۲ فاز ۳">سالن ۲ فاز ۳</option>
+    <option value="سالن ۳ فاز ۳">سالن ۳ فاز ۳</option>
+    <option value="سالن ۴ فاز ۳">سالن ۴ فاز ۳</option>
+    <option value="سالن ۵ فاز ۳">سالن ۵ فاز ۳</option>
+    <option value="سالن ۶ فاز ۳">سالن ۶ فاز ۳</option>
+    <option value="سالن ۷ فاز ۳">سالن ۷ فاز ۳</option>
+    <option value="سالن ۸ فاز ۳">سالن ۸ فاز ۳</option>
+  </optgroup>
+</select>
 
   <label>محلول‌پاشی‌ها</label>
   <input type="text" placeholder="محلول‌پاشی ۱" id="spray1">
@@ -59,6 +109,8 @@
   <button class="share-btn" onclick="shareData()">ارسال اطلاعات</button>
 
   <div id="history"></div>
+<input type="file" id="fileLoader" accept="application/json" style="margin-top: 10px;">
+<button onclick="loadFromFile()">📂 بارگذاری اطلاعات</button>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
@@ -127,3 +179,4 @@
   </script>
 </body>
 </html>
+
