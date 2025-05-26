@@ -7,6 +7,7 @@
   <title>فرم بازدید گلخانه قهرمان</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.1.0/dist/jalaali.min.js"></script>
   <style>
     body { font-family: Tahoma; margin: 0 auto; max-width: 600px; padding: 20px; background: #f7f7f7; }
     h1 { text-align: center; color: #2c3e50; }
@@ -28,6 +29,7 @@
   <h1>فرم بازدید گلخانه</h1>
   <label>تاریخ بازدید</label>
   <input type="date" id="visit-date">
+  <div id="jalali-date"></div>
 
   <label>نام سالن یا گلخانه</label>
   <input type="text" placeholder="مثلاً سالن ۵" id="greenhouse-name">
@@ -57,9 +59,17 @@
   <div id="history"></div>
 
   <script>
+    function toJalali(isoDate) {
+      if (!isoDate) return '';
+      const [y, m, d] = isoDate.split('-').map(Number);
+      const { jy, jm, jd } = jalaali.toJalaali(y, m, d);
+      return `${jy}/${jm.toString().padStart(2, '0')}/${jd.toString().padStart(2, '0')}`;
+    }
+
     function getFormData() {
+      const dateValue = document.getElementById('visit-date').value;
       return {
-        date: document.getElementById('visit-date').value,
+        date: toJalali(dateValue),
         name: document.getElementById('greenhouse-name').value,
         sprays: [1,2,3,4,5].map(i => document.getElementById('spray'+i).value),
         waters: [1,2,3,4,5].map(i => document.getElementById('water'+i).value),
@@ -105,6 +115,11 @@
         </div>
       `).join('');
     }
+
+    document.getElementById('visit-date').addEventListener('change', () => {
+      const val = document.getElementById('visit-date').value;
+      document.getElementById('jalali-date').innerText = `تاریخ شمسی: ${toJalali(val)}`;
+    });
 
     renderHistory();
   </script>
