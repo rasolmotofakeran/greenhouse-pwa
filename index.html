@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -14,18 +15,12 @@
   <style>
     body { font-family: Tahoma; margin: 0 auto; max-width: 600px; padding: 20px; background: #f7f7f7; }
     h1 { text-align: center; color: #2c3e50; }
-    input, textarea, select {
-      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; font-size: 14px;
-    }
+    input, textarea, select { width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
     button { width: 100%; padding: 10px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 10px; }
     .save-btn { background: #4CAF50; color: white; }
-    .save-btn:hover { background: #388E3C; }
     .clear-btn { background: #f44336; color: white; }
-    .clear-btn:hover { background: #d32f2f; }
     .print-btn { background: #607d8b; color: white; }
-    .print-btn:hover { background: #455a64; }
     .share-btn { background: #2196f3; color: white; }
-    .share-btn:hover { background: #1976d2; }
     .entry-box { background: white; border: 1px solid #ccc; border-radius: 6px; padding: 10px; margin-top: 10px; font-size: 14px; line-height: 1.6; }
     label { font-weight: bold; display: block; margin-top: 12px; }
   </style>
@@ -34,49 +29,17 @@
   <h1>فرم بازدید گلخانه</h1>
   <label>تاریخ بازدید (شمسی)</label>
   <input type="text" id="visit-date" readonly style="cursor:pointer; background:#fff;">
-  <script>
-    $(function () {
-      $('#visit-date').persianDatepicker({
-        initialValueType: 'persian',
-        format: 'YYYY/MM/DD',
-        autoClose: true,
-        toolbox: { calendarSwitch: { enabled: false } }
-      });
-    });
-  </script>
-
   <label>نام سالن یا گلخانه</label>
   <select id="greenhouse-name">
     <option value="">انتخاب کنید</option>
-    <option value="فاز 1 سالن 1">فاز 1 سالن 1</option>
-    <option value="فاز 1 سالن 2">فاز 1 سالن 2</option>
-    <option value="فاز 1 سالن 3">فاز 1 سالن 3</option>
-    <option value="فاز 1 سالن 4">فاز 1 سالن 4</option>
-    <option value="فاز 1 سالن 5">فاز 1 سالن 5</option>
-    <option value="فاز 1 سالن 6">فاز 1 سالن 6</option>
-    <option value="فاز 2 سالن 1">فاز 2 سالن 1</option>
-    <option value="فاز 2 سالن 2">فاز 2 سالن 2</option>
-    <option value="فاز 2 سالن 3">فاز 2 سالن 3</option>
-    <option value="فاز 2 سالن 4">فاز 2 سالن 4</option>
-    <option value="فاز 2 سالن 5">فاز 2 سالن 5</option>
-    <option value="فاز 2 سالن 6">فاز 2 سالن 6</option>
-    <option value="فاز 3 سالن 1">فاز 3 سالن 1</option>
-    <option value="فاز 3 سالن 2">فاز 3 سالن 2</option>
-    <option value="فاز 3 سالن 3">فاز 3 سالن 3</option>
-    <option value="فاز 3 سالن 4">فاز 3 سالن 4</option>
-    <option value="فاز 3 سالن 5">فاز 3 سالن 5</option>
-    <option value="فاز 3 سالن 6">فاز 3 سالن 6</option>
-    <option value="فاز 3 سالن 7">فاز 3 سالن 7</option>
-    <option value="فاز 3 سالن 8">فاز 3 سالن 8</option>
+<option value="فاز 1 سالن 1">فاز 1 سالن 1</option><option value="فاز 1 سالن 2">فاز 1 سالن 2</option><option value="فاز 1 سالن 3">فاز 1 سالن 3</option><option value="فاز 1 سالن 4">فاز 1 سالن 4</option><option value="فاز 1 سالن 5">فاز 1 سالن 5</option><option value="فاز 1 سالن 6">فاز 1 سالن 6</option><option value="فاز 2 سالن 1">فاز 2 سالن 1</option><option value="فاز 2 سالن 2">فاز 2 سالن 2</option><option value="فاز 2 سالن 3">فاز 2 سالن 3</option><option value="فاز 2 سالن 4">فاز 2 سالن 4</option><option value="فاز 2 سالن 5">فاز 2 سالن 5</option><option value="فاز 2 سالن 6">فاز 2 سالن 6</option><option value="فاز 3 سالن 1">فاز 3 سالن 1</option><option value="فاز 3 سالن 2">فاز 3 سالن 2</option><option value="فاز 3 سالن 3">فاز 3 سالن 3</option><option value="فاز 3 سالن 4">فاز 3 سالن 4</option><option value="فاز 3 سالن 5">فاز 3 سالن 5</option><option value="فاز 3 سالن 6">فاز 3 سالن 6</option><option value="فاز 3 سالن 7">فاز 3 سالن 7</option><option value="فاز 3 سالن 8">فاز 3 سالن 8</option>
   </select>
-
   <label>محلول‌پاشی‌ها</label>
   <input type="text" id="spray1"><input type="text" id="spray2"><input type="text" id="spray3"><input type="text" id="spray4"><input type="text" id="spray5">
   <label>آبیاری‌ها</label>
   <input type="text" id="water1"><input type="text" id="water2"><input type="text" id="water3"><input type="text" id="water4"><input type="text" id="water5">
   <label>توضیح‌ها</label>
   <textarea id="notes" rows="5"></textarea>
-
   <button class="save-btn" onclick="saveEntry()">ذخیره</button>
   <button class="clear-btn" onclick="clearAll()">پاک کردن همه اطلاعات</button>
   <button class="print-btn" onclick="window.print()">چاپ</button>
@@ -87,108 +50,104 @@
   <button onclick="downloadEntries()">📥 ذخیره ثبت‌ها به صورت فایل</button>
 
   <script>
-    function getFormData() {
-      return {
-        date: document.getElementById('visit-date').value,
-        name: document.getElementById('greenhouse-name').value,
-        sprays: [1,2,3,4,5].map(i => document.getElementById('spray'+i).value),
-        waters: [1,2,3,4,5].map(i => document.getElementById('water'+i).value),
-        notes: document.getElementById('notes').value
-      };
-    }
+    window.onload = function () {
+      $('#visit-date').persianDatepicker({
+        initialValueType: 'persian',
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        toolbox: { calendarSwitch: { enabled: false } }
+      });
 
-    function saveEntry() {
-      const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
-      const newEntry = getFormData();
-      if (!newEntry.date || !newEntry.name) {
-        alert('تاریخ و نام سالن باید پر شوند');
-        return;
+      function getFormData() {
+        return {
+          date: document.getElementById('visit-date').value,
+          name: document.getElementById('greenhouse-name').value,
+          sprays: [1,2,3,4,5].map(i => document.getElementById('spray'+i).value),
+          waters: [1,2,3,4,5].map(i => document.getElementById('water'+i).value),
+          notes: document.getElementById('notes').value
+        };
       }
-      entries.push(newEntry);
-      localStorage.setItem('greenhouseEntries', JSON.stringify(entries));
-      alert('✅ ثبت ذخیره شد');
-      renderHistory();
-    }
 
-    function clearAll() {
-      localStorage.removeItem('greenhouseEntries');
-      renderHistory();
-      alert('همه اطلاعات پاک شد 🗑');
-    }
-
-    function renderHistory() {
-      const container = document.getElementById('history');
-      const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
-      if (!entries.length) {
-        container.innerHTML = '<p style="color:#888">هیچ ثبت قبلی وجود ندارد</p>';
-        return;
-      }
-      container.innerHTML = '<h2>🗂 ثبت‌های قبلی</h2>' + entries.map(entry => `
-        <div class="entry-box">
-          <strong>تاریخ:</strong> ${entry.date}<br>
-          <strong>سالن:</strong> ${entry.name}<br>
-          <strong>محلول‌پاشی:</strong><br>${entry.sprays.map((s,i)=>` ${i+1}- ${s}`).join('<br>')}<br>
-          <strong>آبیاری:</strong><br>${entry.waters.map((w,i)=>` ${i+1}- ${w}`).join('<br>')}<br>
-          <strong>توضیح:</strong> ${entry.notes}
-        </div>
-      `).join('');
-    }
-
-    function shareData() {
-      const entry = getFormData();
-      const text = `🟢 بازدید گلخانه
-تاریخ: ${entry.date}
-نام سالن: ${entry.name}
-
-📌 محلول‌پاشی:
-${entry.sprays.map((s, i) => ` ${i+1}- ${s}`).join('
-')}
-
-💧 آبیاری:
-${entry.waters.map((w, i) => ` ${i+1}- ${w}`).join('
-')}
-
-📝 توضیحات:
-${entry.notes}`;
-      if (navigator.share) {
-        navigator.share({ text });
-      } else {
-        prompt("کپی و ارسال اطلاعات:", text);
-      }
-    }
-
-    function loadFromFile() {
-      const fileInput = document.getElementById('fileLoader');
-      const file = fileInput.files[0];
-      if (!file) return alert('فایلی انتخاب نشده است.');
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const imported = JSON.parse(e.target.result);
-          if (!Array.isArray(imported)) throw 'فرمت فایل نادرست است';
-          localStorage.setItem('greenhouseEntries', JSON.stringify(imported));
-          alert('اطلاعات با موفقیت بارگذاری شد ✅');
-          renderHistory();
-        } catch (err) {
-          alert('خطا در خواندن فایل: ' + err);
+      window.saveEntry = function () {
+        const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
+        const newEntry = getFormData();
+        if (!newEntry.date || !newEntry.name) {
+          alert('تاریخ و نام سالن باید پر شوند');
+          return;
         }
-      };
-      reader.readAsText(file);
-    }
+        entries.push(newEntry);
+        localStorage.setItem('greenhouseEntries', JSON.stringify(entries));
+        alert('✅ ثبت ذخیره شد');
+        renderHistory();
+      }
 
-    function downloadEntries() {
-      const entries = localStorage.getItem('greenhouseEntries');
-      if (!entries) return alert('هیچ داده‌ای برای ذخیره وجود ندارد');
-      const blob = new Blob([entries], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'greenhouse_entries.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
+      window.clearAll = function () {
+        localStorage.removeItem('greenhouseEntries');
+        renderHistory();
+        alert('همه اطلاعات پاک شد 🗑');
+      }
 
-    renderHistory();
+      window.renderHistory = function () {
+        const container = document.getElementById('history');
+        const entries = JSON.parse(localStorage.getItem('greenhouseEntries') || '[]');
+        if (!entries.length) {
+          container.innerHTML = '<p style="color:#888">هیچ ثبت قبلی وجود ندارد</p>';
+          return;
+        }
+        container.innerHTML = '<h2>🗂 ثبت‌های قبلی</h2>' + entries.map(entry => `
+          <div class="entry-box">
+            <strong>تاریخ:</strong> ${entry.date}<br>
+            <strong>سالن:</strong> ${entry.name}<br>
+            <strong>محلول‌پاشی:</strong><br>${entry.sprays.map((s,i)=>` ${i+1}- ${s}`).join('<br>')}<br>
+            <strong>آبیاری:</strong><br>${entry.waters.map((w,i)=>` ${i+1}- ${w}`).join('<br>')}<br>
+            <strong>توضیح:</strong> ${entry.notes}
+          </div>
+        `).join('');
+      }
+
+      window.shareData = function () {
+        const entry = getFormData();
+        const text = `🟢 بازدید گلخانه\nتاریخ: ${entry.date}\nنام سالن: ${entry.name}\n\n📌 محلول‌پاشی:\n${entry.sprays.map((s, i) => ` ${i+1}- ${s}`).join('\n')}\n\n💧 آبیاری:\n${entry.waters.map((w, i) => ` ${i+1}- ${w}`).join('\n')}\n\n📝 توضیحات:\n${entry.notes}`;
+        if (navigator.share) {
+          navigator.share({ text });
+        } else {
+          prompt("کپی و ارسال اطلاعات:", text);
+        }
+      }
+
+      window.loadFromFile = function () {
+        const fileInput = document.getElementById('fileLoader');
+        const file = fileInput.files[0];
+        if (!file) return alert('فایلی انتخاب نشده است.');
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const imported = JSON.parse(e.target.result);
+            if (!Array.isArray(imported)) throw 'فرمت فایل نادرست است';
+            localStorage.setItem('greenhouseEntries', JSON.stringify(imported));
+            alert('اطلاعات با موفقیت بارگذاری شد ✅');
+            renderHistory();
+          } catch (err) {
+            alert('خطا در خواندن فایل: ' + err);
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      window.downloadEntries = function () {
+        const entries = localStorage.getItem('greenhouseEntries');
+        if (!entries) return alert('هیچ داده‌ای برای ذخیره وجود ندارد');
+        const blob = new Blob([entries], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'greenhouse_entries.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      renderHistory();
+    }
   </script>
 </body>
 </html>
